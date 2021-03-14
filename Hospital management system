@@ -1,0 +1,291 @@
+#include <stdio.h>
+#include<string.h>
+
+struct patient_{
+    char Name[50],address[50],syn[50];
+    char type;
+    //char str1[10] ,str2[10], str3[10];
+    int result;
+    int age,no;
+}p[2];
+
+int i,j,c=3500, h=6000,s=500;
+char c1;
+
+char str1[10]="covid";
+char str2[10]="H1N1";
+char str3[10]="sugar";
+
+void patient();
+void display();
+void update();
+void getapp();
+void cash();
+
+int main()
+{
+
+    char username[10];
+    char password[10];
+
+
+    printf("\n\n\t\t=========================================================================");
+    printf("\n\n\t\t                    HOSPITAL MANAGMENT SYSTEM                            ");
+    printf("\n\n\t\t=========================================================================");
+
+    printf("\n\n\t\t\n\n\t\t Username:");
+    scanf("%s",&username);
+
+    printf("\n\n\t\t\n\n\t\t Password:");
+    scanf("%s",&password);
+
+    FILE *ptr;
+    char a[10],b[10],c[10],d[10],e[10],f[10],g[10],h[10];
+    ptr=fopen("E:\\website\\txt.text","r");
+    if(ptr==NULL){
+
+        printf("\nThe file is not open error in file...!!!!!");
+  }else
+
+  {
+      fseek(ptr,0,SEEK_SET);
+
+    fscanf(ptr,"%s%s%s%s%s%s",a,b,c,d,e,f,g,h); //fetching the data from file
+   // printf("\n%s\n%s\n%s\n%s",a,b,c,d);//print the flie data
+
+    if(strcmp(username,a)==0 ||strcmp(username,c)==0  ||strcmp(username,e)==0 ||strcmp(username,g)==0 )
+    {
+        if(strcmp(password,b)==0 ||strcmp(password,d)==0 ||strcmp(password,f)==0 ||strcmp(password,h)==0)
+        {
+            printf("\n\n\t\tThe system is yours......");
+
+            printf("\n\n\t\tWelcome Mr.%s",username);
+
+
+
+
+int ch;
+
+    do{
+        printf("\n\n\t\t=========================================================================");
+        printf("\n\n\t\t                    HOSPITAL MANAGMENT SYSTEM                            ");
+        printf("\n\n\t\t=========================================================================");
+        printf("\n\n\t\t 1.Registration");
+        printf("\n\n\t\t 2.Display");
+        printf("\n\n\t\t 3.UPDATE");
+        printf("\n\n\t\t 4.Appointment");
+        printf("\n\n\t\t 5.Bill");
+        printf("\n\n\t\t 6.Exit");
+
+        printf("\n\n\t\t Enter your choice---->");
+        scanf("%d",&ch);
+
+    switch(ch){
+
+        case 1:patient();
+        break;
+
+        case 2: display();
+        break;
+
+        case 3:update();
+        break;
+
+        case 4:getapp();
+        break;
+
+        case 5:cash();
+        break;
+
+        case 6:   exit(0);
+             default:
+                printf("Invalid choice...!!!!");
+        }
+
+    }while(ch!=6);
+
+  }else
+        {
+            printf("\n\n\t\tWrong password");
+        }
+    }else
+    {
+        printf("\n\n\t\tUser doesn't exist...!!!");
+} fclose(ptr);
+return 0;
+}
+}
+
+void patient()
+{
+
+        FILE *hsp;
+        hsp=fopen("E:\website\c programing\Hospital_Managment\hsp.text","a+");
+
+    if(hsp==NULL){
+    printf("File is not created....");
+    }else{
+
+    printf("\n\n\t\tFile is created successfully....!!!!");
+
+    for(i=0;i<1;i++){
+
+    printf("\n\n\t\tEnter the patient Name-----:>");
+    scanf("%s",&p[i].Name);
+    fprintf(hsp,"\n Name :\t %s",p[i].Name);
+
+    printf("\n\n\t\tEnter the patient Age-----:>");
+    scanf("%d",&p[i].age);
+    fprintf(hsp,"\n Age :\t %d",p[i].age);
+
+    printf("\n\n\t\tEnter the patient Address-----:>");
+    scanf("%s",&p[i].address);
+    fprintf(hsp,"\n Address :\t %s",p[i].address);
+
+  //  printf("\n\n\t\tGender of patient----:>");
+    //scanf(" %c",&p[i].type);
+    //fprintf(hsp,"\n Gender :\t %c",p[i].type);
+
+    printf("\n\n\t\tEnter the contact details of patient-----:>");
+    scanf("%d",&p[i].no);
+    fprintf(hsp,"\n contact No :\t %d",p[i].no);
+
+    printf("\n\n\t\tEnter the symptoms of patient :");
+    scanf("%s",&p[i].syn);
+    fprintf(hsp,"\n symptoms :\t %s",p[i].syn);
+        }
+            for(c1=0;c1<1;c1++){
+
+    printf("\n\n\t\tGender of patient----:>");
+    scanf("%c",&p[c1].type);
+    fprintf(hsp,"\n Gender :\t %c",p[i].type);
+
+
+    }
+
+    }
+    fclose(hsp);
+}
+
+
+void display(){
+
+    for(i=0;i<5;i++){
+
+    printf("\n\n\t\tThe patient Name-----:>%s",p[i].Name);
+
+    printf("\n\n\t\tThe patient Age-----:>%d",p[i].age);
+
+    printf("\n\n\t\tThe patient Address-----:>%s",p[i].address);
+
+    printf("\n\n\t\tGender of patient----:>%c",p[i].type);
+
+    printf("\n\n\t\tThe contact details of patient-----:>%d",p[i].no);
+
+    printf("\n\n\t\tThe patient symptoms-----:>%s",p[i].syn);
+    }
+
+}
+
+
+void update(){
+    char upd;
+    patient();
+
+
+    printf("\n\n\t\tWhat you want to update :");
+    scanf("%s",&upd);
+/*
+    for ( j = 0; j < i; j++) {
+        if (p[j].age == upd) {
+            printf("1. \n\t name"
+                   "5. \n\t age"
+                   "3. \n\t address"
+                   "4. \n\t gender"
+                   "5. \n\t syntoms");
+            int z;
+            scanf("%d", &z);
+            switch (z) {
+            case 1:
+                printf("\n\tEnter the name: ");
+                scanf("%s", p[j].Name);
+                break;
+            case 5:
+                printf("\n\tEnter the age: ");
+                scanf("%d", p[j].age);
+                break;
+            case 3:
+                printf("\n\tEnter the address: ");
+                scanf("%s", &p[j].address);
+                break;
+            case 4:
+                printf("\n\tEnter the geneder: ");
+                scanf("%s", &p[j].type);
+                break;
+            case 5:
+                printf("\n\tEnter the synthoms: ");
+                scanf("%s",p[j].syn);
+                break;
+            }
+            printf("UPDATED SUCCESSFULLY.\n");
+        }
+    }*/
+}
+
+
+void getapp(){
+
+        FILE *hsp;
+        hsp=fopen("E:\website\c programing\Hospital_Managment\hsp.text","a+");
+
+for(i=0;i<5;i++)
+{
+
+    if(strcmp(str1,p[i].syn)==0)
+        {
+            printf("\n\n\t\tGo for cabin no First \t%s",p[i].Name);
+            fprintf(hsp,"\n cabin First : \t%s",p[i].Name);
+        }else if(strcmp(str2,p[i].syn)==0)
+        {
+            printf("\n\n\t\tGo for cabin no Second \t%s",p[i].Name);
+            fprintf(hsp,"\n cabin Second : \t%s",p[i].Name);
+        }
+        else if(strcmp(str3,p[i].syn)==0)
+        {
+            printf("\n\n\t\tGo for cabin no Three\t%s",p[i].Name);
+            fprintf(hsp,"\n cabin Three : \t%s",p[i].Name);
+        }
+}fclose(hsp);
+}
+
+void cash(){
+
+        FILE *hsp;
+        hsp=fopen("E:\website\c programing\Hospital_Managment\hsp.text","a+");
+
+for(i=0;i<5;i++)
+{
+
+    if(strcmp(str1,p[i].syn)==0){
+            p[i].result=c;
+        printf("\n\n\t\t Bill for cabin no First for %s \t%d",p[i].Name,p[i].result);
+        fprintf(hsp,"\nBill for %s: \t%d",p[i].Name,p[i].result);
+    }
+
+    else if(strcmp(str2,p[i].syn)==0){
+            p[i].result=h;
+        printf("\n\n\t\t Bill for cabin no Second for %s \t%d",p[i].Name,p[i].result);
+        fprintf(hsp,"\nBill for %s: \t%d",p[i].Name,p[i].result);
+        }
+
+    else if(strcmp(str3,p[i].syn)==0)
+        {
+            p[i].result=s;
+        printf("\n\n\t\t Bill for cabin no Three for %s \t%d",p[i].Name,p[i].result);
+        fprintf(hsp,"\nBill for %s: \t%d",p[i].Name,p[i].result);
+        }
+    }fclose(hsp);
+
+}
+
+
